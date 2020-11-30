@@ -1,5 +1,5 @@
 <h1 align="center" >NODE OCR</h1>
-<h3 align="center"> A Rest API for OCR</h3>
+<h3 align="center"> A Rest API solution for Optical Character Recognition.</h3>
 
 ## Technologies used
 * NodeJS
@@ -14,7 +14,19 @@
 
 ### How to access the API
 
-* Set the URL TO `http://localhost:3000/api` and do POST
+* In PostMan, set request to POST and add `Content-Type:application/json` in the request header.
+* To generate API Key, Set the URL TO `http://localhost:3000/generate`
+
+INPUT:
+```json
+    {   
+        "name":"Enter your name here",
+        "email":"asdasdasd@gmail.com"
+    }
+```
+The result will contain a unique API key.
+
+* Set the URL TO `http://localhost:3000/api`
 
 INPUT:
 ```json
@@ -23,6 +35,7 @@ INPUT:
         "image_url":"asdasdasd@gmail.com"
     }
 ```
+The result will contain the text present in the image.
 
 <br>
 
