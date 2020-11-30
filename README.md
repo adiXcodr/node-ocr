@@ -39,6 +39,11 @@ The result will contain the text present in the image.
 
 <br>
 
+### Communication
+
+#### [Slack](https://join.slack.com/t/newworkspace-yuv8502/shared_invite/zt-jrecfmpd-0vICt10cN_4vDMiGavNB8w)
+
+
 ### Author
 
 #### [Adittya Dey](https://github.com/adiXcodr)
