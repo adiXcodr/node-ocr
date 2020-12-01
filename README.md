@@ -47,5 +47,3 @@ The result will contain the text present in the image.
 ### Author
 
 #### [Adittya Dey](https://github.com/adiXcodr)
-
-<!-- "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" -->

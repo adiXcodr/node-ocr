@@ -1,6 +1,6 @@
 {
   "name": "node-ocr",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "A Rest API solution for Optical Character Recognition",
   "scripts": {
