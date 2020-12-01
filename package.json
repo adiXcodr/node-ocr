@@ -2,9 +2,22 @@
   "name": "node-ocr",
   "version": "0.0.0",
   "private": true,
+  "description": "A Rest API solution for Optical Character Recognition",
   "scripts": {
     "start": "node ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adiXcodr/node-ocr.git"
+  },
+  "engines": {
+    "node": "14.15.0"
+  },
+  "author": "Adittya Dey",
+  "bugs": {
+    "url": "https://github.com/adiXcodr/node-ocr/issues"
+  },
+  "homepage": "https://github.com/adiXcodr/node-ocr#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
