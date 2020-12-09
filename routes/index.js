@@ -64,6 +64,8 @@ router.route('/generate')
           };
           if(!jsonData || jsonData.length<1)
             jsonData=[];
+          if (jsonData.filter(x => x.email === req.props.email).length > 0)
+            return res.json({ status: 'Failure', data: 'E-mail already exists.' });
           jsonData.push(data);
           fs.writeFileSync('api_data.json', JSON.stringify(jsonData));
           result=key;
