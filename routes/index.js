@@ -55,12 +55,20 @@ router.route('/generate')
         console.log(req.props);
         if(req.props.name && req.props.email && req.props.name!='' && req.props.email!=''){
           let key=crypto.randomBytes(10).toString('hex');
+          const emailData = await Data.findOne({
+            email: req.props.email
+          });
+          
+          // If Email already exists, return error
+          if (emailData) {
+            return res.json({ status: 'Failure', data: 'E-mail already exists.' });
+          }
+          
           const data = new Data({
             name:req.props.name,
             email:req.props.email,
             key
           });
-          //res.json({ status: 'Failure', data: 'E-mail already exists.' });
           await data.save();
           result = key;
           res.json({status:'Success',data:result});
