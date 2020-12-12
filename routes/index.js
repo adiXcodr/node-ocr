@@ -7,7 +7,9 @@ const worker = createWorker({
 });
 var fs = require("fs");
 var crypto = require("crypto");
-let jsonData=require('../api_data.json');
+
+const Data = require('../model/data');
+// let jsonData=require('../api_data.json');
 
 async function doOCR(image_url){
   await worker.load();
@@ -20,17 +22,13 @@ async function doOCR(image_url){
   return(text);
 };
 
-function searchKey(key){
-  if(!jsonData || jsonData.length<1){
-    return(false);
-  }
-  else{
-    let obj = jsonData.find(o => o.key === key);
-    console.log(obj);
-    if(!obj)
-      return(false);
-    else
-      return(true);
+async function searchKey(key){
+  const data = await Data.findOne({ key });
+  if (data) {
+    console.log(data);
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -57,21 +55,25 @@ router.route('/generate')
         console.log(req.props);
         if(req.props.name && req.props.email && req.props.name!='' && req.props.email!=''){
           let key=crypto.randomBytes(10).toString('hex');
-          let data={
+          const emailData = await Data.findOne({
+            email: req.props.email
+          });
+          
+          // If Email already exists, return error
+          if (emailData) {
+            return res.json({ status: 'Failure', data: 'E-mail already exists.' });
+          }
+          
+          const data = new Data({
             name:req.props.name,
             email:req.props.email,
-            key:key
-          };
-          if(!jsonData || jsonData.length<1)
-            jsonData=[];
-          if (jsonData.filter(x => x.email === req.props.email).length > 0)
-            return res.json({ status: 'Failure', data: 'E-mail already exists.' });
-          jsonData.push(data);
-          fs.writeFileSync('api_data.json', JSON.stringify(jsonData));
-          result=key;
+            key
+          });
+          await data.save();
+          result = key;
           res.json({status:'Success',data:result});
         }
-        else{
+        else {
           result='name or email error';
           res.json({status:'Failure',data:result});
         }
@@ -91,7 +93,8 @@ router.route('/api')
         res.setHeader('Content-Type','application/json');
         let result='';
         console.log(req.props);
-        if(searchKey(req.props.api_key)){
+        try {
+        if( await searchKey(req.props.api_key)){
 
             if(await isImageURL(req.props.image_url)){
                 result=await doOCR(req.props.image_url);
@@ -107,6 +110,10 @@ router.route('/api')
           result='Invalid Key';
           res.json({status:'Failure',data:result});
         }
+      } catch (err) {
+        result='Internal Server error';
+        res.json({status:'Failure',data:result, err});
+      }
 });
 
 module.exports = router;
