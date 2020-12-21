@@ -3,7 +3,7 @@ var router = express.Router();
 const isImageURL = require('image-url-validator');
 const { createWorker } = require('tesseract.js');
 const worker = createWorker({
-  logger: m => console.log(m), // Add logger here
+  logger: m => console.log(m), 
 });
 var fs = require("fs");
 var crypto = require("crypto");

@@ -28,7 +28,7 @@
     "image-url-validator": "^0.2.4",
     "jade": "~1.11.0",
     "mongodb": "^3.6.3",
-    "mongoose": "^5.11.7",
+    "mongoose": "^5.11.8",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
     "tesseract.js": "^2.1.4"

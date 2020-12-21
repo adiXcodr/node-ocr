@@ -10,18 +10,21 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-mongoose.connect(`${process.env.DB_URL}`, {
+const db_url = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.xlc6h.mongodb.net/nodeocr?retryWrites=true&w=majority";
+const db_name = "nodeocr";
+mongoose.connect(db_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  dbName:db_name
 }).then((_, err) => {
   if (err) {
-      console.log(`Error occured while connecting to database: ${process.env.DB_URL}`)
+      console.log(`Error occured while connecting to database: ${db_url}`)
       console.log(err);
       return reject(err);
   }
-  console.log(`Connected to DB at ${process.env.DB_URL} \nUsing DB: ${process.env.DB_NAME}\n\n`);
+  console.log(`Connected to DB at ${db_url} \nUsing DB: ${db_name}\n\n`);
 });
 
 // view engine setup
