@@ -1,36 +1,14 @@
 var express = require('express');
 var router = express.Router();
 const isImageURL = require('image-url-validator');
-const { createWorker } = require('tesseract.js');
-const worker = createWorker({
-  logger: m => console.log(m), 
-});
+
 var fs = require("fs");
 var crypto = require("crypto");
 
 const Data = require('../model/data');
 // let jsonData=require('../api_data.json');
+const { doOCR, searchKey } = require('../utilities/utilities')
 
-async function doOCR(image_url){
-  await worker.load();
-  await worker.loadLanguage('eng');
-  await worker.initialize('eng');
-  
-  const { data: { text } } = await worker.recognize(image_url);
-  console.log(text);
-  await worker.terminate();
-  return(text);
-};
-
-async function searchKey(key){
-  const data = await Data.findOne({ key });
-  if (data) {
-    console.log(data);
-    return true;
-  } else {
-    return false;
-  }
-}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
