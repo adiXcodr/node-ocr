@@ -53,7 +53,7 @@ router.route('/generate')
           res.json({status:'Success',data:result});
         }
         else {
-          res.statusCode=400; //Not found 404 
+          res.statusCode=404; //Not found 404 
           result='name or email error';
           res.json({status:'Failure',data:result});
         }
@@ -88,7 +88,7 @@ router.route('/api')
           
         }
         else{
-          res.statusCode=400; //Bad request 400 as key is invalid
+          res.statusCode=401; //Auth failed 401 as key is invalid
           result='Invalid Key';
           res.json({status:'Failure',data:result});
         }
