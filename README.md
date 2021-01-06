@@ -1,10 +1,14 @@
 <h1 align="center" >NODE OCR</h1>
 <h3 align="center"> A Rest API solution for Optical Character Recognition.</h3>
 
+## Live Server Here
+#### [Heroku](https://node-ocr.herokuapp.com/)
+
 ## Technologies used
 * NodeJS
 * ExpressJS
 * TesseractJS
+* MongoDB
 
 ### Installing depencencies and running the app
 * Fork the repository
@@ -15,7 +19,7 @@
 ### How to access the API
 
 * In PostMan, set request to POST and add `Content-Type:application/json` in the request header.
-* To generate API Key, Set the URL TO `http://localhost:3000/generate`
+* To generate API Key, Set the URL TO `http://localhost:3000/generate` or `https://node-ocr.herokuapp.com/generate`
 
 INPUT:
 ```json
@@ -26,7 +30,7 @@ INPUT:
 ```
 The result will contain a unique API key.
 
-* Set the URL TO `http://localhost:3000/api`
+* Set the URL TO `http://localhost:3000/api` or `https://node-ocr.herokuapp.com/api`
 
 INPUT:
 ```json
